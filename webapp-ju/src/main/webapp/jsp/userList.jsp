@@ -3,12 +3,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="kr.ac.kku.cs.wp.ju.user.User" %>
-
+<%@ page import="User.User" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags/template" %>
-
+<%@ taglib prefix="custom" uri="kr.ac.kku.cs.wp.ju.tags.custom" %>
 <%!
 private List<User> getUsers() {
     List<User> users = new ArrayList<User>();
@@ -39,7 +38,7 @@ private List<User> getUsers() {
     request.setAttribute("users", users);
 %>
 
-<h2>Tag File 사용자 목록</h2>
+<h2>Custom 사용자 목록</h2>
 
 <!-- 필터 입력 필드 -->
 <div class="filter-container">
@@ -49,9 +48,9 @@ private List<User> getUsers() {
 <div id="user-count" style="margin-bottom: 15px;">전체 :<strong>${fn:length(requestScope.users)}</strong></div>
 
 <div class="user-card-container" id="user-list">
-    <c:forEach var="user" items="${users}">
+    <c:forEach var="user" items="${requestScope.users}">
     
-    <t:userCard status="${user.status}" email="${user.email}" name="${user.username}" roles="${user.roles[1]}" id="${user.id}" />
+    <custom:userCard status="${user.status}" email="${user.email}" name="${user.username}" roles="${user.roles[1]}" id="${user.id}" />
         <%-- <div class="user-card" data-name="${user.username}" data-email="${user.email}" data-role="${user.roles[0]}, ${user.roles[1]}" data-id="${user.id}">
             <img src="${user.photoSRC}" alt="${user.username} 사진">
             <div class="user-info">
@@ -65,171 +64,8 @@ private List<User> getUsers() {
         </div> --%>
     </c:forEach>
 </div>
-<script>
-function filterUsers() {
-    const filter = document.getElementById('user-filter').value.toLowerCase();
-    const userList = document.getElementById('user-list');
-    const userCards = userList.getElementsByClassName('user-card');
 
-    for (let i = 0; i < userCards.length; i++) {
-        const card = userCards[i];
-        const name = card.getAttribute('data-name').toLowerCase();
-        const email = card.getAttribute('data-email').toLowerCase();
-        const role = card.getAttribute('data-role').toLowerCase();
-        const id = card.getAttribute('data-id').toLowerCase();
-
-        if (name.includes(filter) || email.includes(filter) || role.includes(filter) || id.includes(filter)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
-    }
-}
-</script>
-
-    <!-- 사용자 카드 2 -->
-    <div class="user-card" data-name="이순신" data-email="lee@example.com" data-role="일반 사용자, 운영자" data-id="1002">
-        <img src="https://via.placeholder.com/150" alt="이순신 사진">
-        <div class="user-info">
-            <h3>이순신</h3>
-            <p><strong>이메일:</strong> lee@example.com</p>
-            <p><strong>역할:</strong> 일반 사용자, 운영자</p>
-            <p><strong>사번:</strong> 1002</p>
-            <p><strong>상태:</strong> 비활성</p>
-            <button onclick="alert('이순신의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 3 -->
-    <div class="user-card" data-name="유관순" data-email="yoo@example.com" data-role="관리자, 디자이너, 마케팅" data-id="1003">
-        <img src="https://via.placeholder.com/150" alt="유관순 사진">
-        <div class="user-info">
-            <h3>유관순</h3>
-            <p><strong>이메일:</strong> yoo@example.com</p>
-            <p><strong>역할:</strong> 관리자, 디자이너, 마케팅</p>
-            <p><strong>사번:</strong> 1003</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('유관순의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
     
-    <!-- 사용자 카드 1 (여러 역할 및 사번 추가) -->
-    <div class="user-card" data-name="홍길동" data-email="hong@example.com" data-role="관리자, 개발자" data-id="1001">
-        <img src="https://via.placeholder.com/150" alt="홍길동 사진">
-        <div class="user-info">
-            <h3>홍길동</h3>
-            <p><strong>이메일:</strong> hong@example.com</p>
-            <p><strong>역할:</strong> 관리자, 개발자</p>
-            <p><strong>사번:</strong> 1001</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('홍길동의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 2 -->
-    <div class="user-card" data-name="이순신" data-email="lee@example.com" data-role="일반 사용자, 운영자" data-id="1002">
-        <img src="https://via.placeholder.com/150" alt="이순신 사진">
-        <div class="user-info">
-            <h3>이순신</h3>
-            <p><strong>이메일:</strong> lee@example.com</p>
-            <p><strong>역할:</strong> 일반 사용자, 운영자</p>
-            <p><strong>사번:</strong> 1002</p>
-            <p><strong>상태:</strong> 비활성</p>
-            <button onclick="alert('이순신의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 3 -->
-    <div class="user-card" data-name="유관순" data-email="yoo@example.com" data-role="관리자, 디자이너, 마케팅" data-id="1003">
-        <img src="https://via.placeholder.com/150" alt="유관순 사진">
-        <div class="user-info">
-            <h3>유관순</h3>
-            <p><strong>이메일:</strong> yoo@example.com</p>
-            <p><strong>역할:</strong> 관리자, 디자이너, 마케팅</p>
-            <p><strong>사번:</strong> 1003</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('유관순의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-    <!-- 사용자 카드 1 (여러 역할 및 사번 추가) -->
-    <div class="user-card" data-name="홍길동" data-email="hong@example.com" data-role="관리자, 개발자" data-id="1001">
-        <img src="https://via.placeholder.com/150" alt="홍길동 사진">
-        <div class="user-info">
-            <h3>홍길동</h3>
-            <p><strong>이메일:</strong> hong@example.com</p>
-            <p><strong>역할:</strong> 관리자, 개발자</p>
-            <p><strong>사번:</strong> 1001</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('홍길동의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 2 -->
-    <div class="user-card" data-name="이순신" data-email="lee@example.com" data-role="일반 사용자, 운영자" data-id="1002">
-        <img src="https://via.placeholder.com/150" alt="이순신 사진">
-        <div class="user-info">
-            <h3>이순신</h3>
-            <p><strong>이메일:</strong> lee@example.com</p>
-            <p><strong>역할:</strong> 일반 사용자, 운영자</p>
-            <p><strong>사번:</strong> 1002</p>
-            <p><strong>상태:</strong> 비활성</p>
-            <button onclick="alert('이순신의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 3 -->
-    <div class="user-card" data-name="유관순" data-email="yoo@example.com" data-role="관리자, 디자이너, 마케팅" data-id="1003">
-        <img src="https://via.placeholder.com/150" alt="유관순 사진">
-        <div class="user-info">
-            <h3>유관순</h3>
-            <p><strong>이메일:</strong> yoo@example.com</p>
-            <p><strong>역할:</strong> 관리자, 디자이너, 마케팅</p>
-            <p><strong>사번:</strong> 1003</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('유관순의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-    
-    <!-- 사용자 카드 1 (여러 역할 및 사번 추가) -->
-    <div class="user-card" data-name="홍길동" data-email="hong@example.com" data-role="관리자, 개발자" data-id="1001">
-        <img src="https://via.placeholder.com/150" alt="홍길동 사진">
-        <div class="user-info">
-            <h3>홍길동</h3>
-            <p><strong>이메일:</strong> hong@example.com</p>
-            <p><strong>역할:</strong> 관리자, 개발자</p>
-            <p><strong>사번:</strong> 1001</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('홍길동의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 2 -->
-    <div class="user-card" data-name="이순신" data-email="lee@example.com" data-role="일반 사용자, 운영자" data-id="1002">
-        <img src="https://via.placeholder.com/150" alt="이순신 사진">
-        <div class="user-info">
-            <h3>이순신</h3>
-            <p><strong>이메일:</strong> lee@example.com</p>
-            <p><strong>역할:</strong> 일반 사용자, 운영자</p>
-            <p><strong>사번:</strong> 1002</p>
-            <p><strong>상태:</strong> 비활성</p>
-            <button onclick="alert('이순신의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-
-    <!-- 사용자 카드 3 -->
-    <div class="user-card" data-name="유관순" data-email="yoo@example.com" data-role="관리자, 디자이너, 마케팅" data-id="1003">
-        <img src="https://via.placeholder.com/150" alt="유관순 사진">
-        <div class="user-info">
-            <h3>유관순</h3>
-            <p><strong>이메일:</strong> yoo@example.com</p>
-            <p><strong>역할:</strong> 관리자, 디자이너, 마케팅</p>
-            <p><strong>사번:</strong> 1003</p>
-            <p><strong>상태:</strong> 활성</p>
-            <button onclick="alert('유관순의 상세 정보')">상세 보기</button>
-        </div>
-    </div>
-</div>
-
 <script>
     // 사용자 필터링 함수
     function filterUsers() {

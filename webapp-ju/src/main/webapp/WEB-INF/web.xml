@@ -6,6 +6,16 @@
 	<welcome-file>index.html</welcome-file>
 <welcome-file>/jsp/index.jsp</welcome-file>
 </welcome-file-list>
+
+<jsp-config>
+
+	<taglib>
+		<taglib-uri>kr.ac.kku.cs.wp.ju.tags.custom</taglib-uri>
+		<taglib-location>/WEB-INF.tlds/custom.tld</taglib-location>
+	</taglib>
+</jsp-config>
+
+
 <error-page>
 	<error-code>404</error-code>
 	<location>/error/404.html</location>
@@ -84,13 +94,7 @@
 <session-timeout>30</session-timeout>
 </session-config>
 
-<jsp-config>
 
-	<taglib>
-		<taglib-uri>kr.ac.kku.cs.wp.tags.custom</taglib-uri>
-		<taglib-location>/WEB-INF.tlds/custom.tld</taglib-location>
-	</taglib>
-</jsp-config>
 
 
 </web-app>

@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 			
 			User user = new User();
 			user.setId(id);
-			user.setRole(role);
+			user.setRoles(role);
 			hs.setAttribute("user", user);
 			
 			log(user.getId());
