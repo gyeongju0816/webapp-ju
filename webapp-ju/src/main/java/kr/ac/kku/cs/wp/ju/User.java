@@ -21,4 +21,6 @@ public class User {
     public void setRoles(String role) {
         this.role = role;
     }
+    
+    
 }

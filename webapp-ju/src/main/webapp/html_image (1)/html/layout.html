@@ -168,12 +168,18 @@
             const mainContent = document.querySelector('main');
             const existingPage = document.getElementById(pageId);
 
-            // 이미 로드된 페이지가 있으면 그 페이지를 활성화
+          /*   // 이미 로드된 페이지가 있으면 그 페이지를 활성화
             if (existingPage) {
                 setActivePage(pageId);
                 return;
+            } */
+		
+            if(existingPage){
+            	
+            	existingPage.remove();
+            	
             }
-
+            
             // 새로운 page-card 생성
             fetch(pageUrl)
                 .then(response => response.text())
@@ -248,7 +254,7 @@
                     <li><a href="#" onclick="loadPage('home', 'home.html')">홈</a></li>
                     <li><a href="#" onclick="toggleSubmenu()">사용자 관리</a></li>
                     <ul id="submenu" class="submenu">
-						<li><a href="#" onclick="loadPage('userList', '/webapp-ju/jsp/userList.jsp')">사용자 목록</a></li>
+						<li><a href="#" onclick="loadPage('userList', '../user/userlist')">사용자 목록</a></li>
                         <li><a href="#" onclick="loadPage('userForm', 'user-form.html')">사용자 입력</a></li>
                     </ul>
                     <li><a href="#" onclick="loadPage('service', 'service.html')">서비스</a></li>

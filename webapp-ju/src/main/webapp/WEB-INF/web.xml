@@ -60,7 +60,7 @@
 
 <param-name>valve</param-name>
 
-<param-value>on</param-value>
+<param-value>off</param-value>
 
 </init-param>
 

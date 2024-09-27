@@ -1,4 +1,4 @@
-package User;
+package User.copy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,7 @@ public class User {
 		    private String id;             // 사용자 ID
 		    private List<String> roles;    // 사용자 역할 (리스트로 저장)
 		    private String status;         // 사용자 상태
-		    private String password;
-		    
+		    private String password = null;
 		    // 기본 생성자
 		    public User() {
 		        roles = new ArrayList<>(); // roles 리스트 초기화
@@ -80,13 +79,5 @@ public class User {
 		        }
 		        roles.add(role);
 		    }
-
-			public String getPassword() {
-				// TODO Auto-generated method stub
-				return password;
-			}
-			  public void setPassword(String password) {
-			        this.password = password;
-			    }
 	}
 
