@@ -19,13 +19,7 @@ public class UserData {
         this.initData();
     }
 
-    // 싱글톤 인스턴스 반환
-    public static synchronized UserData getInstance() {
-        if (THIS == null) {
-            THIS = new UserData();
-        }
-        return THIS;
-    }
+
 
     // 초기 데이터 설정
     private void initData() {
@@ -62,5 +56,13 @@ public class UserData {
     // Map 데이터 반환
     public Map<String, User> getData() {
         return users;
+    }
+    
+ // 싱글톤 인스턴스 반환
+    public static synchronized UserData getInstance() {
+        if (THIS == null) {
+            THIS = new UserData();
+        }
+        return THIS;
     }
 }

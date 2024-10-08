@@ -146,17 +146,17 @@ margin-bottom: 20px;
 </style>
 </head>
 <body>
-<divclass="login-form">
+<div class="login-form">
 <!-- 시스템 이름 -->
 <h1>WebappSeok</h1>
 <!-- 로그인 폼 -->
 <h2>Login</h2>
 <!-- 에러 메시지 출력 -->
-<pclass="error-message"></p>
-<formaction="login" method="post">
-<inputtype="text"name="username"placeholder="Username"required>
-<inputtype="password"name="password"placeholder="Password"required>
-<inputtype="submit"value="Login">
+<p class="error-message"></p>
+<form action="login" method="post">
+<input type="text" name="username" placeholder="Username" required>
+<input type="password" name="password" placeholder="Password" required>
+<input type="submit" value="Login">
 			</form>
 		</div>
 	</body>

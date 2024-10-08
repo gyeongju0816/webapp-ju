@@ -1,5 +1,7 @@
 package kr.ac.kku.cs.wp.ju;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Account {
@@ -41,6 +43,16 @@ public class Account {
     // roles getter와 setter
     public List<String> getRoles() {
         return roles;
+    }
+    
+    // 단일 String 역할을 설정할 때 사용
+    public void setRole(String role) {
+        this.roles = Collections.singletonList(role);
+    }
+
+    // 콤마로 구분된 여러 역할을 설정할 때 사용
+    public void setRolesFromString(String rolesString) {
+        this.roles = Arrays.asList(rolesString.split(","));
     }
 
     public void setRoles(List<String> roles) {

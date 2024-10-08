@@ -113,16 +113,6 @@
             overflow-y: auto; /* 페이지 카드 내에서 스크롤 가능 */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        
-        .page-card-home {
-            display: none;
-            width: 100%;
-            min-height: 100%; /* 페이지 카드의 높이를 부모 요소에 맞추어 설정 */
-            /* padding: 20px; */
-            background-color: white;
-            overflow-y: auto; /* 페이지 카드 내에서 스크롤 가능 */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
 
         .page-card.active {
             display: block;
@@ -168,18 +158,12 @@
             const mainContent = document.querySelector('main');
             const existingPage = document.getElementById(pageId);
 
-          /*   // 이미 로드된 페이지가 있으면 그 페이지를 활성화
+            // 이미 로드된 페이지가 있으면 그 페이지를 활성화
             if (existingPage) {
                 setActivePage(pageId);
                 return;
-            } */
-		
-            if(existingPage){
-            	
-            	existingPage.remove();
-            	
             }
-            
+
             // 새로운 page-card 생성
             fetch(pageUrl)
                 .then(response => response.text())
@@ -195,30 +179,30 @@
                 .catch(error => {
                     console.error('페이지 로드 중 오류 발생:', error);
                 });
-        }
-        
-     // padding을 home 페이지일 때만 0으로 설정하는 함수
-        function adjustPaddingForHome(pageId) {
-            const pageElement = document.getElementById(pageId);
-            
-            if (pageId === 'home') {
-                pageElement.style.padding = '0px';  // home 페이지의 padding을 0으로 설정
-            } else {
-                pageElement.style.padding = '20px';  // 다른 페이지의 padding을 기본값으로 설정
+
+            // padding을 home 페이지일 때만 0으로 설정하는 함수
+            function adjustPaddingForHome(pageId) {
+                const pageElement = document.getElementById(pageId);
+                
+                if (pageId === 'home') {
+                    pageElement.style.padding = '0px';  // home 페이지의 padding을 0으로 설정
+                } else {
+                    pageElement.style.padding = '20px';  // 다른 페이지의 padding을 기본값으로 설정
+                }
             }
-        }
 
-        // 특정 페이지를 활성화하는 함수
-        function setActivePage(pageId) {
-            const pages = document.querySelectorAll('.page-card');
-            pages.forEach(page => {
-                page.classList.remove('active');
-            });
+            // 특정 페이지를 활성화하는 함수
+            function setActivePage(pageId) {
+                const pages = document.querySelectorAll('.page-card');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
 
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-                localStorage.setItem('currentPage', pageId); // 현재 페이지 상태 저장
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    localStorage.setItem('currentPage', pageId); // 현재 페이지 상태 저장
+                }
             }
         }
 
@@ -254,7 +238,7 @@
                     <li><a href="#" onclick="loadPage('home', 'home.html')">홈</a></li>
                     <li><a href="#" onclick="toggleSubmenu()">사용자 관리</a></li>
                     <ul id="submenu" class="submenu">
-						<li><a href="#" onclick="loadPage('userList', '../user/userlist')">사용자 목록</a></li>
+                        <li><a href="#" onclick="loadPage('userList', '/webapp-ju/user/userList')">사용자 목록</a></li>
                         <li><a href="#" onclick="loadPage('userForm', 'user-form.html')">사용자 입력</a></li>
                     </ul>
                     <li><a href="#" onclick="loadPage('service', 'service.html')">서비스</a></li>

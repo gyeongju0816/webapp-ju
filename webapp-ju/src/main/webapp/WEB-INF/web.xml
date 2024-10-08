@@ -94,6 +94,14 @@
 <session-timeout>30</session-timeout>
 </session-config>
 
+<servlet>
+    <servlet-name>UserControllerServlet</servlet-name>
+    <servlet-class>kr.ac.kku.cs.wp.ju.UserControllerServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>UserControllerServlet</servlet-name>
+    <url-pattern>/user/userList</url-pattern>
+</servlet-mapping>
 
 
 
